@@ -13,7 +13,6 @@ import {
   Palette,
   Settings,
   Share2,
-  Sparkles,
   Type,
   Upload,
   X,
@@ -408,7 +407,7 @@ function App() {
               <MonitorSmartphone size={24} aria-hidden />
             </div>
             <div>
-              <p className="eyebrow">StoreShot JP</p>
+              <p className="brand-name">StoreShot JP</p>
               <h1>ストア画像メーカー</h1>
             </div>
           </div>
@@ -451,7 +450,7 @@ function App() {
           </div>
 
           <div className="panel">
-            <PanelTitle icon={<Sparkles size={18} />} title="テンプレート" />
+            <PanelTitle icon={<PackageCheck size={18} />} title="テンプレート" />
             <div className="template-list">
               {STORE_TEMPLATES.map((template) => (
                 <button className="template-button" key={template.id} onClick={() => applyTemplate(template)} type="button">
@@ -574,7 +573,7 @@ function App() {
           </div>
 
           <div className="panel revenue">
-            <PanelTitle icon={<BadgeJapaneseYen size={18} />} title="収益導線" />
+            <PanelTitle icon={<BadgeJapaneseYen size={18} />} title="Pro" />
             <div className="price-line">
               <span>Pro書き出し</span>
               <strong>¥980</strong>
@@ -584,8 +583,8 @@ function App() {
               <strong>11〜21人</strong>
             </div>
             <button className="wide-button" onClick={() => setShowRevenuePanel(true)} type="button">
-              <Sparkles size={18} />
-              Pro導線を確認
+              <BadgeJapaneseYen size={18} />
+              Proを見る
             </button>
             <a className="wide-button secondary-link" href={X_SHARE_URL} rel="noreferrer" target="_blank">
               <Share2 size={18} />
@@ -617,10 +616,9 @@ function App() {
             >
               <X size={17} />
             </button>
-            <p className="eyebrow">Monetize</p>
-            <h2>無料ユーザーを有料導線へ送る</h2>
+            <h2>Pro書き出し</h2>
             <p>
-              無料版はPNG単体書き出し、Proは透かしなしZIP一括書き出し。手作業を増やさず、Pro販売で月1〜2万円を狙う商品です。
+              Proでは透かしなしPNGと全サイズZIPを書き出せます。購入後に案内されるライセンスコードを入力してください。
             </p>
             <div className="modal-actions">
               <a className="button-link primary" href={paymentHref} rel="noreferrer" target="_blank">
@@ -650,190 +648,63 @@ function App() {
         </div>
       )}
 
-      <section className="growth-section" aria-label="料金とPro販売">
-        <div className="growth-inner">
-          <div className="growth-copy">
-            <p className="eyebrow">For indie app launches</p>
-            <h2>ストア公開前の画像作りを短くする</h2>
-            <p>
-              iPhone、iPad、Google Play向けの主要サイズをまとめて作り、リリース直前のストア素材づくりを軽くします。
-            </p>
-          </div>
-          <div className="pricing-list">
-            <div className="pricing-item">
-              <span>無料</span>
-              <strong>PNG単体</strong>
-              <p>まず1枚作って雰囲気を確認できます。</p>
-            </div>
-            <div className="pricing-item featured">
-              <span>Pro</span>
-              <strong>¥980</strong>
-              <p>透かしなし、全サイズZIP一括書き出し。</p>
-              <a href={paymentHref} rel="noreferrer" target="_blank">
-                購入希望を送る
+      <section className="product-details" aria-label="Proと仕様">
+        <div className="details-grid">
+          <section className="details-block" id="pro">
+            <h2>Pro</h2>
+            <dl className="plain-list">
+              <div>
+                <dt>価格</dt>
+                <dd>¥980</dd>
+              </div>
+              <div>
+                <dt>内容</dt>
+                <dd>透かしなしPNG、全サイズZIP一括書き出し</dd>
+              </div>
+              <div>
+                <dt>目安</dt>
+                <dd>月11〜21人の購入で月1〜2万円</dd>
+              </div>
+            </dl>
+            <div className="detail-actions">
+              <a className="button-link primary" href={paymentHref} rel="noreferrer" target="_blank">
+                Proを購入
               </a>
-            </div>
-            <div className="pricing-item">
-              <span>作り方</span>
-              <strong>無料ガイド</strong>
-              <p>App Store / Google Playの要件と作成手順を確認できます。</p>
-              <a href={GUIDE_PAGE_URL}>
+              <a className="button-link" href={GUIDE_PAGE_URL}>
                 ガイドを見る
               </a>
             </div>
-            <div className="pricing-item">
-              <span>Pro販売</span>
-              <strong>月1〜2万円</strong>
-              <p>¥980なら11〜21人の購入で目標レンジに届きます。</p>
-              <a href={PRO_PAGE_URL}>
-                販売ページを見る
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      <section className="template-section" aria-label="ストア画像テンプレート">
-        <div className="template-inner">
-          <div className="template-heading">
-            <p className="eyebrow">Copy templates</p>
-            <h2>用途別テンプレートで最初の1枚を早く作る</h2>
-            <p>タスク管理、家計簿、学習記録、ヘルスケアの訴求コピーを用意しました。適用後にアプリ名だけ変えれば試せます。</p>
-          </div>
-          <div className="template-showcase">
-            {STORE_TEMPLATES.map((template) => (
-              <article className="template-card" key={template.id}>
-                <span>{template.category}</span>
-                <h3>{template.title}</h3>
-                <p>{template.headline}</p>
-                <button onClick={() => applyTemplate(template)} type="button">
-                  テンプレートを適用
-                </button>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+          <section className="details-block" aria-label="対応サイズ">
+            <h2>対応サイズ</h2>
+            <ul className="size-list">
+              {DEVICE_PRESETS.map((item) => (
+                <li key={item.id}>
+                  <span>{item.label}</span>
+                  <strong>{item.size}</strong>
+                </li>
+              ))}
+            </ul>
+          </section>
 
-      <section className="sample-section" aria-label="完成サンプル">
-        <div className="sample-inner">
-          <div className="sample-heading">
-            <p className="eyebrow">Sample outputs</p>
-            <h2>完成イメージを見てから作れる</h2>
-            <p>テンプレートごとの色、コピー、見せ方をサンプル化しました。Proなら全サイズをまとめてZIPで書き出せます。</p>
-          </div>
-          <div className="sample-grid">
-            {STORE_TEMPLATES.map((template) => {
-              const templatePalette = PALETTES.find((item) => item.id === template.paletteId) ?? PALETTES[0];
-              return (
-                <article
-                  className="sample-card"
-                  key={template.id}
-                  style={{
-                    background: `linear-gradient(145deg, ${templatePalette.colors[0]}, ${templatePalette.colors[1]} 62%, ${templatePalette.colors[2]})`,
-                    color: templatePalette.ink,
-                  }}
-                >
-                  <div className="sample-copy">
-                    <span>{template.badge}</span>
-                    <h3>{template.headline}</h3>
-                    <p>{template.subhead}</p>
-                  </div>
-                  <div className="sample-phone" aria-hidden>
-                    <div />
-                  </div>
-                  <div className="sample-footer">
-                    <strong>{template.appName}</strong>
-                    <small>{template.title}</small>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="service-section" id="pro" aria-label="Pro販売パッケージ">
-        <div className="service-inner">
-          <div className="service-heading">
-            <p className="eyebrow">Self-serve Pro</p>
-            <h2>手作業なしのPro販売に寄せる</h2>
-            <p>
-              無料ツールからPro書き出しへ送ります。決済リンクを設定すれば、購入後にライセンスコードを案内するだけの運用にできます。
-            </p>
-          </div>
-
-          <div className="service-grid">
-            <div className="service-card">
-              <PackageCheck size={22} />
-              <h3>Pro内容</h3>
-              <ul>
-                <li>透かしなしPNG書き出し</li>
-                <li>全サイズZIP一括書き出し</li>
-                <li>用途別テンプレートの継続利用</li>
-              </ul>
-            </div>
-            <div className="service-card">
-              <BadgeJapaneseYen size={22} />
-              <h3>価格</h3>
-              <p className="service-price">¥980</p>
-              <p>月11〜21人の購入で、目標の月1〜2万円に届く設計です。</p>
-            </div>
-            <div className="service-card">
-              <Lock size={22} />
-              <h3>手作業を増やさない</h3>
-              <ul>
-                <li>ユーザー自身が画像を作成</li>
-                <li>Pro機能はライセンスコードで解除</li>
-                <li>個別制作を前提にしない</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="brief-panel">
-            <div>
-              <p className="eyebrow">Pro purchase</p>
-              <h3>購入導線を1つに集約</h3>
-            </div>
-            <p>決済リンクを設定すると、Pro購入ボタンはそのまま決済ページへ向きます。未設定の間は購入希望フォームに送ります。</p>
-            <div className="brief-actions">
-              <a href={paymentHref} rel="noreferrer" target="_blank">
-                <BadgeJapaneseYen size={18} />
-                Proを購入
-              </a>
-              <a href={PRO_PAGE_URL}>
-                <PackageCheck size={18} />
-                Proページを見る
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="faq-section" aria-label="よくある質問">
-        <div className="faq-inner">
-          <div>
-            <p className="eyebrow">FAQ</p>
+          <section className="details-block" aria-label="よくある確認">
             <h2>購入前の確認</h2>
-          </div>
-          <div className="faq-list">
-            <details>
-              <summary>無料で何ができますか？</summary>
-              <p>無料版では、現在選択しているサイズの透かし入りPNGを単体で書き出せます。</p>
-            </details>
-            <details>
-              <summary>Pro版は何が違いますか？</summary>
-              <p>透かしなしで、iPhone、iPad、Google Play向けの全サイズをZIPで一括書き出す用途を想定しています。</p>
-            </details>
-            <details>
-              <summary>Pro購入後は何ができますか？</summary>
-              <p>透かしなしPNGと、iPhone、iPad、Google Play向けの全サイズZIP一括書き出しを使える想定です。</p>
-            </details>
-            <details>
-              <summary>月1〜2万円を狙う想定は？</summary>
-              <p>Proを980円で月11〜21人に販売する設計です。個別制作は前提にしません。</p>
-            </details>
-          </div>
+            <div className="faq-list">
+              <details>
+                <summary>無料で何ができますか？</summary>
+                <p>選択中サイズの透かし入りPNGを単体で書き出せます。</p>
+              </details>
+              <details>
+                <summary>Pro版は何が違いますか？</summary>
+                <p>透かしなしPNGと、iPhone、iPad、Google Play向け全サイズのZIP一括書き出しが使えます。</p>
+              </details>
+              <details>
+                <summary>個別制作はありますか？</summary>
+                <p>ありません。ユーザー自身がブラウザ上で画像を作るセルフサービスのPro機能です。</p>
+              </details>
+            </div>
+          </section>
         </div>
       </section>
     </main>
