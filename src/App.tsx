@@ -236,6 +236,7 @@ const REPO_ISSUES_URL = "https://github.com/matsumaru-t/storeshot-jp/issues/new"
 const FALLBACK_PAYMENT_LINK = buildIssueUrl("pro-order.yml", "Pro版の購入希望");
 const PRO_PAGE_URL = "/storeshot-jp/pro.html";
 const GUIDE_PAGE_URL = "/storeshot-jp/guide.html";
+const PHONE_FRAME_ASPECT = 9 / 19.5;
 const X_SHARE_URL = `https://twitter.com/intent/tweet?${new URLSearchParams({
   text: "App Store / Google Play向けスクリーンショットをブラウザで作れる StoreShot JP",
   url: PUBLIC_URL,
@@ -957,6 +958,15 @@ function getFrameRect(width: number, height: number, layout: TextLayout, frameSt
   if (frameStyle === "full") {
     return { x: width * 0.08, y: height * 0.28, w: width * 0.84, h: height * 0.58 };
   }
+  if (frameStyle === "device") {
+    if (layout === "split") {
+      return fitAspectRect({ x: width * 0.51, y: height * 0.16, w: width * 0.42, h: height * 0.62 }, PHONE_FRAME_ASPECT);
+    }
+    if (layout === "minimal") {
+      return fitAspectRect({ x: width * 0.18, y: height * 0.12, w: width * 0.64, h: height * 0.72 }, PHONE_FRAME_ASPECT);
+    }
+    return fitAspectRect({ x: width * 0.15, y: height * 0.35, w: width * 0.7, h: height * 0.52 }, PHONE_FRAME_ASPECT);
+  }
   if (layout === "split") {
     return { x: width * 0.52, y: height * 0.13, w: width * 0.39, h: height * 0.74 };
   }
@@ -964,6 +974,25 @@ function getFrameRect(width: number, height: number, layout: TextLayout, frameSt
     return { x: width * 0.13, y: height * 0.11, w: width * 0.74, h: height * 0.76 };
   }
   return { x: width * 0.18, y: height * 0.36, w: width * 0.64, h: height * 0.5 };
+}
+
+function fitAspectRect(frame: { x: number; y: number; w: number; h: number }, aspect: number) {
+  const heightFromWidth = frame.w / aspect;
+  if (heightFromWidth <= frame.h) {
+    return {
+      x: frame.x,
+      y: frame.y + (frame.h - heightFromWidth) / 2,
+      w: frame.w,
+      h: heightFromWidth,
+    };
+  }
+  const widthFromHeight = frame.h * aspect;
+  return {
+    x: frame.x + (frame.w - widthFromHeight) / 2,
+    y: frame.y,
+    w: widthFromHeight,
+    h: frame.h,
+  };
 }
 
 function drawFrame(
