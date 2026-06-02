@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="App Store / Google Play向けスクリーンショット制作代行。個人開発アプリのストア画像一式を9,800円から制作相談できます。"
+      content="App Store / Google Play向けスクリーンショット制作代行。個人開発アプリのストア画像一式を9,800円から、素材が揃えば2〜4日目安で制作相談できます。"
     />
     <meta
       name="keywords"
@@ -19,7 +19,7 @@
     <meta property="og:title" content="ストア画像制作代行 - StoreShot JP" />
     <meta
       property="og:description"
-      content="App Store / Google Play向けスクリーンショット一式を9,800円から制作相談できます。"
+      content="個人開発アプリ向けに、ストア掲載用スクリーンショット一式を9,800円から制作相談できます。"
     />
     <meta property="og:url" content="https://matsumaru-t.github.io/storeshot-jp/service.html" />
     <meta property="og:image" content="https://matsumaru-t.github.io/storeshot-jp/og-image.jpg" />
@@ -40,11 +40,45 @@
         "serviceType": "App Store / Google Play screenshot design",
         "url": "https://matsumaru-t.github.io/storeshot-jp/service.html",
         "offers": {
-          "@type": "Offer",
-          "price": "9800",
+          "@type": "AggregateOffer",
+          "lowPrice": "9800",
+          "highPrice": "19800",
           "priceCurrency": "JPY",
+          "offerCount": "3",
           "availability": "https://schema.org/InStock"
         }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "制作代行には何を送ればよいですか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "アプリ名、対象ストア、必要枚数、スクリーンショット素材、入れたい訴求や特徴を送ってください。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "納期の目安はどれくらいですか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "素材が揃っている場合、通常2〜4日を目安に見積もりと納期を案内します。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "修正はできますか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "初回納品後、軽微な文言や色の調整を1回まで含めた想定です。"
+            }
+          }
+        ]
       }
     </script>
     <title>ストア画像制作代行 - App Store / Google Play スクリーンショット作成</title>
@@ -180,7 +214,16 @@
         gap: 12px;
       }
 
-      .card {
+      .plans {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .card,
+      .plan,
+      .faq-item,
+      .cta-band {
         min-width: 0;
         padding: 18px;
         background: #ffffff;
@@ -189,14 +232,27 @@
         box-shadow: 0 12px 34px rgba(39, 43, 44, 0.05);
       }
 
-      .card h3 {
+      .card h3,
+      .plan h3,
+      .faq-item h3 {
         margin: 0 0 10px;
         font-size: 18px;
       }
 
+      .plan strong {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 30px;
+        line-height: 1;
+      }
+
       .card p,
       .card li,
-      .steps li {
+      .plan p,
+      .plan li,
+      .steps li,
+      .faq-item p,
+      .cta-band p {
         color: #53605b;
         font-size: 14px;
         font-weight: 720;
@@ -204,15 +260,37 @@
       }
 
       .card p,
+      .plan p,
+      .faq-item p,
+      .cta-band p,
       .steps {
         margin: 0;
       }
 
       .card ul,
+      .plan ul,
+      .checklist,
       .steps {
         display: grid;
         gap: 8px;
         padding-left: 18px;
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .cta-band {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .cta-band h2 {
+        margin-bottom: 8px;
       }
 
       .samples {
@@ -272,11 +350,14 @@
         }
 
         .grid,
-        .samples {
+        .plans,
+        .samples,
+        .faq-grid {
           grid-template-columns: 1fr;
         }
 
-        .actions {
+        .actions,
+        .cta-band {
           display: grid;
         }
       }
@@ -290,7 +371,7 @@
           <h1>App Store / Google Playのストア画像制作代行</h1>
           <p class="lead">
             個人開発アプリのリリース前に必要なスクリーンショット画像を、訴求コピー込みで一式作る制作代行です。
-            無料ツールで方向性を確認してから、そのまま依頼できます。
+            素材が揃っていれば2〜4日目安で、無料ツールで方向性を確認してからそのまま依頼できます。
           </p>
           <div class="actions">
             <a
@@ -309,6 +390,42 @@
           <strong>¥9,800〜</strong>
           <p>月1〜2件の受注で、目標の月1〜2万円に届く価格帯です。必要枚数や素材量に応じて見積もります。</p>
         </aside>
+      </section>
+
+      <section class="section">
+        <h2>料金プラン</h2>
+        <div class="plans">
+          <article class="plan">
+            <h3>ライト</h3>
+            <strong>¥9,800〜</strong>
+            <p>1ストア向けに、まず公開できる画像一式を整えるプランです。</p>
+            <ul>
+              <li>最大5枚のストア画像</li>
+              <li>訴求コピー調整</li>
+              <li>軽微な修正1回</li>
+            </ul>
+          </article>
+          <article class="plan">
+            <h3>スタンダード</h3>
+            <strong>¥14,800〜</strong>
+            <p>App StoreとGoogle Playの両方、または複数サイズを整えるプランです。</p>
+            <ul>
+              <li>最大10枚のストア画像</li>
+              <li>ストア別サイズ展開</li>
+              <li>ファイル名整理</li>
+            </ul>
+          </article>
+          <article class="plan">
+            <h3>急ぎ相談</h3>
+            <strong>¥19,800〜</strong>
+            <p>リリース直前で優先対応が必要な場合の相談枠です。</p>
+            <ul>
+              <li>納期優先の制作相談</li>
+              <li>必要枚数に応じて見積もり</li>
+              <li>素材確認後に可否を返答</li>
+            </ul>
+          </article>
+        </div>
       </section>
 
       <section class="section">
@@ -331,6 +448,17 @@
             <p>タスク管理、家計簿、学習記録、ヘルスケアなどの方向性から選べます。</p>
           </article>
         </div>
+      </section>
+
+      <section class="section">
+        <h2>依頼時に送るもの</h2>
+        <ul class="checklist">
+          <li>アプリ名と公開URL、またはテスト中の概要</li>
+          <li>対象ストア、必要枚数、希望サイズ</li>
+          <li>使いたいスクリーンショット素材</li>
+          <li>入れたい見出し、訴求、避けたい表現</li>
+          <li>希望納期と連絡先</li>
+        </ul>
       </section>
 
       <section class="section">
@@ -362,6 +490,41 @@
           <li>制作範囲と見積もりを確認する。</li>
           <li>スクリーンショット画像一式を受け取る。</li>
         </ol>
+      </section>
+
+      <section class="section">
+        <h2>よくある質問</h2>
+        <div class="faq-grid">
+          <article class="faq-item">
+            <h3>素材が未完成でも相談できますか？</h3>
+            <p>相談できます。画面が未確定の場合は、公開予定の機能と仮スクリーンショットをもとに見積もります。</p>
+          </article>
+          <article class="faq-item">
+            <h3>支払い方法は？</h3>
+            <p>見積もり後に支払い方法を案内します。決済リンクを設定するまでは手動で受け付けます。</p>
+          </article>
+          <article class="faq-item">
+            <h3>どの形式で納品されますか？</h3>
+            <p>App StoreまたはGoogle Playに登録しやすいPNGファイルとして納品する想定です。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="cta-band">
+          <div>
+            <h2>まずは必要枚数だけ送ってください</h2>
+            <p>アプリ名、対象ストア、スクリーンショット素材があれば、制作範囲と見積もりを返します。</p>
+          </div>
+          <a
+            class="button"
+            href="https://github.com/matsumaru-t/storeshot-jp/issues/new?template=service-order.yml&title=%E3%82%B9%E3%83%88%E3%82%A2%E7%94%BB%E5%83%8F%E5%88%B6%E4%BD%9C%E4%BB%A3%E8%A1%8C%E3%81%AE%E4%BE%9D%E9%A0%BC"
+            rel="noreferrer"
+            target="_blank"
+          >
+            制作代行を相談する
+          </a>
+        </div>
       </section>
 
       <footer>
