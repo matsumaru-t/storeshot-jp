@@ -4,6 +4,12 @@ App StoreとGoogle Play向けのスクリーンショット素材をブラウザ
 タスク管理、家計簿、学習記録、ヘルスケア向けの用途別コピー・配色テンプレートも備えています。
 制作代行向けの静的ページは `public/service.html` です。
 
+## 公開URL
+
+- 無料ツール: https://matsumaru-t.github.io/storeshot-jp/
+- ストア画像制作代行: https://matsumaru-t.github.io/storeshot-jp/service.html
+- 制作代行の相談フォーム: https://github.com/matsumaru-t/storeshot-jp/issues/new?template=service-order.yml&title=%E3%82%B9%E3%83%88%E3%82%A2%E7%94%BB%E5%83%8F%E5%88%B6%E4%BD%9C%E4%BB%A3%E8%A1%8C%E3%81%AE%E4%BE%9D%E9%A0%BC
+
 ## 収益モデル
 
 - 無料版: PNG単体書き出し。透かし入りでツール名を拡散します。
