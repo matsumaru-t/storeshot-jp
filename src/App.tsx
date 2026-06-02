@@ -677,6 +677,7 @@ function App() {
               <span>制作代行</span>
               <strong>¥9,800</strong>
               <p>アプリ素材を預けてストア画像一式を依頼できます。</p>
+              <a href="/storeshot-jp/service.html">専用ページを見る</a>
               <a href={serviceHref} rel="noreferrer" target="_blank">
                 依頼する
               </a>
