@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="StoreShot JP Proは、App Store / Google Play向けスクリーンショットを透かしなしPNGと全サイズZIPで書き出せる有料版です。"
+    />
+    <meta
+      name="keywords"
+      content="App Store スクショ 作成, Google Play スクリーンショット 作成, ストア画像, Pro, ZIP 書き出し"
+    />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#f5f7f8" />
+    <link rel="canonical" href="https://matsumaru-t.github.io/storeshot-jp/pro.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="StoreShot JP" />
+    <meta property="og:title" content="StoreShot JP Pro - 透かしなしZIP書き出し" />
+    <meta
+      property="og:description"
+      content="ストア掲載用スクリーンショットを、透かしなしPNGと全サイズZIPでまとめて書き出せます。"
+    />
+    <meta property="og:url" content="https://matsumaru-t.github.io/storeshot-jp/pro.html" />
+    <meta property="og:image" content="https://matsumaru-t.github.io/storeshot-jp/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "StoreShot JP Pro",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Web",
+        "url": "https://matsumaru-t.github.io/storeshot-jp/pro.html",
+        "description": "App StoreとGoogle Play向けスクリーンショットの透かしなしPNGと全サイズZIPを書き出せる有料版です。",
+        "offers": {
+          "@type": "Offer",
+          "price": "980",
+          "priceCurrency": "JPY",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Pro版では何ができますか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "透かしなしPNG書き出しと、iPhone、iPad、Google Play向けの全サイズZIP一括書き出しを使える想定です。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "月1〜2万円には何人の購入が必要ですか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "980円の場合、月11〜21人の購入で月1〜2万円のレンジに届きます。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "無料版との違いは何ですか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "無料版は透かし入りPNG単体書き出し、Pro版は透かしなしPNGと全サイズZIP一括書き出しを想定しています。"
+            }
+          }
+        ]
+      }
+    </script>
+    <title>StoreShot JP Pro - App Store / Google Play スクリーンショット有料版</title>
+    <style>
+      :root {
+        color: #202427;
+        background: #f5f7f8;
+        font-family:
+          ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .page {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #fbfaf6 0%, #edf6fa 56%, #eef8f2 100%);
+      }
+
+      .hero,
+      .section,
+      footer {
+        width: min(1100px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr);
+        gap: 34px;
+        align-items: center;
+        padding: 54px 0 44px;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: #5a6f65;
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 740px;
+        margin: 0;
+        font-size: clamp(40px, 6vw, 72px);
+        line-height: 1.02;
+      }
+
+      .lead {
+        max-width: 680px;
+        margin: 22px 0 0;
+        color: #43504a;
+        font-size: 19px;
+        font-weight: 760;
+        line-height: 1.65;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 18px;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 900;
+        text-decoration: none;
+        background: #202427;
+        border: 1px solid #202427;
+        border-radius: 8px;
+      }
+
+      .button.secondary {
+        color: #202427;
+        background: rgba(255, 255, 255, 0.78);
+        border-color: rgba(43, 47, 50, 0.14);
+      }
+
+      .price-box {
+        display: grid;
+        gap: 16px;
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(43, 47, 50, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 26px 70px rgba(39, 43, 44, 0.12);
+      }
+
+      .price-box strong {
+        font-size: 56px;
+        line-height: 1;
+      }
+
+      .price-box p {
+        margin: 0;
+        color: #53605b;
+        font-size: 14px;
+        font-weight: 750;
+        line-height: 1.6;
+      }
+
+      .section {
+        padding: 28px 0;
+      }
+
+      .section h2 {
+        margin: 0 0 16px;
+        font-size: 30px;
+        line-height: 1.2;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .card,
+      .cta-band {
+        min-width: 0;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid rgba(43, 47, 50, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 12px 34px rgba(39, 43, 44, 0.05);
+      }
+
+      .card h3 {
+        margin: 0 0 10px;
+        font-size: 18px;
+      }
+
+      .card p,
+      .card li,
+      .cta-band p {
+        color: #53605b;
+        font-size: 14px;
+        font-weight: 720;
+        line-height: 1.62;
+      }
+
+      .card p,
+      .cta-band p {
+        margin: 0;
+      }
+
+      .card ul {
+        display: grid;
+        gap: 8px;
+        padding-left: 18px;
+        margin: 0;
+      }
+
+      .cta-band {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .cta-band h2 {
+        margin-bottom: 8px;
+      }
+
+      footer {
+        padding: 34px 0 48px;
+        color: #64716b;
+        font-size: 13px;
+        font-weight: 750;
+      }
+
+      @media (max-width: 860px) {
+        .hero,
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding-top: 36px;
+        }
+
+        .actions,
+        .cta-band {
+          display: grid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">StoreShot JP Pro</p>
+          <h1>透かしなし・全サイズZIPでストア画像を一括書き出し</h1>
+          <p class="lead">
+            Proは、個人開発者が自分でストア画像を仕上げるための有料版です。
+            個別制作を前提にせず、ブラウザだけで作成から書き出しまで完結させます。
+          </p>
+          <div class="actions">
+            <a
+              class="button"
+              href="https://github.com/matsumaru-t/storeshot-jp/issues/new?template=pro-order.yml&title=Pro%E7%89%88%E3%81%AE%E8%B3%BC%E5%85%A5%E5%B8%8C%E6%9C%9B"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Proを購入する
+            </a>
+            <a class="button secondary" href="/storeshot-jp/">無料ツールを使う</a>
+          </div>
+        </div>
+        <aside class="price-box">
+          <p class="eyebrow">Price</p>
+          <strong>¥980</strong>
+          <p>月11〜21人の購入で、目標の月1〜2万円に届く価格帯です。決済リンク設定後は購入ボタンを直接決済へ向けられます。</p>
+        </aside>
+      </section>
+
+      <section class="section">
+        <h2>Proでできること</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>透かしなしPNG</h3>
+            <p>無料版の透かしを外して、ストア掲載に使いやすい画像を書き出します。</p>
+          </article>
+          <article class="card">
+            <h3>全サイズZIP</h3>
+            <p>iPhone、iPad、Google Play向けの主要サイズをまとめてZIPで保存できます。</p>
+          </article>
+          <article class="card">
+            <h3>テンプレート活用</h3>
+            <p>タスク管理、家計簿、学習記録、ヘルスケア向けのコピーを使って短時間で整えます。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>売上目安</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>月11人</h3>
+            <p>980円 x 11人 = 10,780円。月1万円ラインの目安です。</p>
+          </article>
+          <article class="card">
+            <h3>月21人</h3>
+            <p>980円 x 21人 = 20,580円。月2万円ラインの目安です。</p>
+          </article>
+          <article class="card">
+            <h3>運用方針</h3>
+            <p>無料ツールで流入を作り、ZIP一括書き出しが必要なユーザーだけProへ送ります。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>購入前の確認</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>必要なもの</h3>
+            <ul>
+              <li>アプリ画面のスクリーンショット</li>
+              <li>アプリ名と見出しコピー</li>
+              <li>対象ストアのサイズ選択</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>無料版との違い</h3>
+            <ul>
+              <li>無料: 透かし入りPNG単体</li>
+              <li>Pro: 透かしなしPNG</li>
+              <li>Pro: 全サイズZIP一括書き出し</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>今後の自動販売</h3>
+            <p>Stripe Payment Linksなどの決済URLを設定すると、Pro購入ボタンを直接決済ページへ向けられます。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="cta-band">
+          <div>
+            <h2>まずは無料版で1枚作ってください</h2>
+            <p>全サイズをまとめて書き出したくなったタイミングで、Proへ切り替える設計です。</p>
+          </div>
+          <a class="button" href="/storeshot-jp/">無料ツールを開く</a>
+        </div>
+      </section>
+
+      <footer>
+        <a href="/storeshot-jp/">StoreShot JP</a> /
+        <a href="/storeshot-jp/guide.html">作成ガイド</a> /
+        <a href="https://github.com/matsumaru-t/storeshot-jp">GitHub</a>
+      </footer>
+    </main>
+  </body>
+</html>
