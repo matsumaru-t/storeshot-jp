@@ -11,6 +11,7 @@ import {
   MonitorSmartphone,
   Palette,
   Settings,
+  Share2,
   Sparkles,
   Type,
   Upload,
@@ -81,6 +82,24 @@ const DEVICE_PRESETS: DevicePreset[] = [
     note: "6.9 inchを用意しない場合の補助サイズ",
   },
   {
+    id: "ipad-13-2048",
+    platform: "ios",
+    label: "iPad 13 inch",
+    size: "2048 x 2732",
+    width: 2048,
+    height: 2732,
+    note: "iPad対応アプリのApp Store掲載向け",
+  },
+  {
+    id: "ipad-13-2064",
+    platform: "ios",
+    label: "iPad 13 inch",
+    size: "2064 x 2752",
+    width: 2064,
+    height: 2752,
+    note: "新しいiPad Pro/Air向けの高解像度サイズ",
+  },
+  {
     id: "android-phone",
     platform: "android",
     label: "Google Play phone",
@@ -146,10 +165,15 @@ const DEFAULT_STATE: AppState = {
 
 const PAYMENT_LINK = import.meta.env.VITE_PAYMENT_LINK || "";
 const SERVICE_LINK = import.meta.env.VITE_SERVICE_LINK || "";
-const PRO_CODE = "STORESHOT-LAUNCH";
+const PRO_CODE = import.meta.env.VITE_PRO_CODE || "";
+const PUBLIC_URL = "https://matsumaru-t.github.io/storeshot-jp/";
 const REPO_ISSUES_URL = "https://github.com/matsumaru-t/storeshot-jp/issues/new";
 const FALLBACK_PAYMENT_LINK = buildIssueUrl("pro-order.yml", "Pro版の購入希望");
 const FALLBACK_SERVICE_LINK = buildIssueUrl("service-order.yml", "ストア画像制作代行の依頼");
+const X_SHARE_URL = `https://twitter.com/intent/tweet?${new URLSearchParams({
+  text: "App Store / Google Play向けスクリーンショットをブラウザで作れる StoreShot JP",
+  url: PUBLIC_URL,
+}).toString()}`;
 
 function App() {
   const [state, setState] = useState<AppState>(() => loadState());
@@ -269,6 +293,11 @@ function App() {
   };
 
   const unlockPro = () => {
+    if (!PRO_CODE) {
+      setShowRevenuePanel(true);
+      setStatus("Proコードは購入希望を送信後に案内します。");
+      return;
+    }
     if (licenseInput.trim() !== PRO_CODE) {
       setStatus("ライセンスコードが違います。");
       return;
@@ -445,6 +474,10 @@ function App() {
               <Sparkles size={18} />
               Pro導線を確認
             </button>
+            <a className="wide-button secondary-link" href={X_SHARE_URL} rel="noreferrer" target="_blank">
+              <Share2 size={18} />
+              Xで共有
+            </a>
           </div>
 
           <div className="panel checklist">
@@ -503,6 +536,41 @@ function App() {
           </section>
         </div>
       )}
+
+      <section className="growth-section" aria-label="料金と制作代行">
+        <div className="growth-inner">
+          <div className="growth-copy">
+            <p className="eyebrow">For indie app launches</p>
+            <h2>ストア公開前の画像作りを短くする</h2>
+            <p>
+              iPhone、iPad、Google Play向けの主要サイズをまとめて作り、リリース直前のストア素材づくりを軽くします。
+            </p>
+          </div>
+          <div className="pricing-list">
+            <div className="pricing-item">
+              <span>無料</span>
+              <strong>PNG単体</strong>
+              <p>まず1枚作って雰囲気を確認できます。</p>
+            </div>
+            <div className="pricing-item featured">
+              <span>Pro</span>
+              <strong>¥980</strong>
+              <p>透かしなし、全サイズZIP一括書き出し。</p>
+              <a href={paymentHref} rel="noreferrer" target="_blank">
+                購入希望を送る
+              </a>
+            </div>
+            <div className="pricing-item">
+              <span>制作代行</span>
+              <strong>¥9,800</strong>
+              <p>アプリ素材を預けてストア画像一式を依頼できます。</p>
+              <a href={serviceHref} rel="noreferrer" target="_blank">
+                依頼する
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

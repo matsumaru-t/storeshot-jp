@@ -18,7 +18,7 @@ body:
     id: contact
     attributes:
       label: 連絡先
-      description: メール、X、GitHubなど連絡できる方法
+      description: 公開されてもよいメール、X、GitHubなど連絡できる方法
       placeholder: your-name@example.com
     validations:
       required: true

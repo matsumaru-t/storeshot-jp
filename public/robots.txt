@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://matsumaru-t.github.io/storeshot-jp/sitemap.xml
