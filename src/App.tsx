@@ -3,13 +3,11 @@ import JSZip from "jszip";
 import {
   BadgeJapaneseYen,
   Check,
-  ClipboardCopy,
   Download,
   FileArchive,
   ImagePlus,
   Layers,
   Lock,
-  Mail,
   MonitorSmartphone,
   PackageCheck,
   Palette,
@@ -231,13 +229,12 @@ const STORE_TEMPLATES: StoreTemplate[] = [
 ];
 
 const PAYMENT_LINK = import.meta.env.VITE_PAYMENT_LINK || "";
-const SERVICE_LINK = import.meta.env.VITE_SERVICE_LINK || "";
 const PRO_CODE = import.meta.env.VITE_PRO_CODE || "";
-const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || "";
 const PUBLIC_URL = "https://matsumaru-t.github.io/storeshot-jp/";
 const REPO_ISSUES_URL = "https://github.com/matsumaru-t/storeshot-jp/issues/new";
 const FALLBACK_PAYMENT_LINK = buildIssueUrl("pro-order.yml", "Pro版の購入希望");
-const FALLBACK_SERVICE_LINK = buildIssueUrl("service-order.yml", "ストア画像制作代行の依頼");
+const PRO_PAGE_URL = "/storeshot-jp/pro.html";
+const GUIDE_PAGE_URL = "/storeshot-jp/guide.html";
 const X_SHARE_URL = `https://twitter.com/intent/tweet?${new URLSearchParams({
   text: "App Store / Google Play向けスクリーンショットをブラウザで作れる StoreShot JP",
   url: PUBLIC_URL,
@@ -252,7 +249,6 @@ function App() {
   const [status, setStatus] = useState("スクリーンショットをアップロードして編集できます。");
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
-  const serviceBriefRef = useRef<HTMLTextAreaElement | null>(null);
 
   const preset = useMemo(
     () => DEVICE_PRESETS.find((item) => item.id === state.presetId) ?? DEVICE_PRESETS[0],
@@ -263,8 +259,6 @@ function App() {
     [state.paletteId],
   );
   const paymentHref = PAYMENT_LINK || FALLBACK_PAYMENT_LINK;
-  const serviceBrief = useMemo(() => buildServiceBrief(state.appName), [state.appName]);
-  const serviceHref = SERVICE_LINK || buildMailtoLink(CONTACT_EMAIL, serviceBrief) || FALLBACK_SERVICE_LINK;
 
   const update = <Key extends keyof AppState>(key: Key, value: AppState[Key]) => {
     setState((current) => {
@@ -394,19 +388,6 @@ function App() {
       return next;
     });
     setStatus(`${template.title}テンプレートを適用しました。`);
-  };
-
-  const copyServiceBrief = async () => {
-    try {
-      if (!navigator.clipboard) throw new Error("Clipboard API unavailable");
-      await navigator.clipboard.writeText(serviceBrief);
-      setStatus("制作代行の依頼文をコピーしました。");
-    } catch {
-      serviceBriefRef.current?.focus();
-      serviceBriefRef.current?.select();
-      const copied = document.execCommand("copy");
-      setStatus(copied ? "制作代行の依頼文をコピーしました。" : "依頼文を選択しました。コピーして送信してください。");
-    }
   };
 
   return (
@@ -580,8 +561,8 @@ function App() {
               <strong>¥980</strong>
             </div>
             <div className="price-line">
-              <span>制作代行</span>
-              <strong>¥9,800</strong>
+              <span>月1〜2万円目安</span>
+              <strong>11〜21人</strong>
             </div>
             <button className="wide-button" onClick={() => setShowRevenuePanel(true)} type="button">
               <Sparkles size={18} />
@@ -599,7 +580,7 @@ function App() {
               <li>Apple: 1〜10枚のPNG/JPEGを用意</li>
               <li>Google Play: 最低2枚、320〜3840px</li>
               <li>無料版は透かし入りでSNS拡散</li>
-              <li>Pro/代行リンクを公開前に設定</li>
+              <li>Pro決済リンクを公開前に設定</li>
             </ul>
           </div>
         </aside>
@@ -620,14 +601,14 @@ function App() {
             <p className="eyebrow">Monetize</p>
             <h2>無料ユーザーを有料導線へ送る</h2>
             <p>
-              無料版はPNG単体書き出し、Proは透かしなしZIP一括書き出し。制作代行は1件で月1万円近くを狙う商品です。
+              無料版はPNG単体書き出し、Proは透かしなしZIP一括書き出し。手作業を増やさず、Pro販売で月1〜2万円を狙う商品です。
             </p>
             <div className="modal-actions">
               <a className="button-link primary" href={paymentHref} rel="noreferrer" target="_blank">
                 Proを購入
               </a>
-              <a className="button-link" href={serviceHref} rel="noreferrer" target="_blank">
-                制作代行を依頼
+              <a className="button-link" href={PRO_PAGE_URL}>
+                Proページを見る
               </a>
             </div>
             <div className="license-row">
@@ -650,7 +631,7 @@ function App() {
         </div>
       )}
 
-      <section className="growth-section" aria-label="料金と制作代行">
+      <section className="growth-section" aria-label="料金とPro販売">
         <div className="growth-inner">
           <div className="growth-copy">
             <p className="eyebrow">For indie app launches</p>
@@ -674,12 +655,19 @@ function App() {
               </a>
             </div>
             <div className="pricing-item">
-              <span>制作代行</span>
-              <strong>¥9,800</strong>
-              <p>アプリ素材を預けてストア画像一式を依頼できます。</p>
-              <a href="/storeshot-jp/service.html">専用ページを見る</a>
-              <a href={serviceHref} rel="noreferrer" target="_blank">
-                依頼する
+              <span>作り方</span>
+              <strong>無料ガイド</strong>
+              <p>App Store / Google Playの要件と作成手順を確認できます。</p>
+              <a href={GUIDE_PAGE_URL}>
+                ガイドを見る
+              </a>
+            </div>
+            <div className="pricing-item">
+              <span>Pro販売</span>
+              <strong>月1〜2万円</strong>
+              <p>¥980なら11〜21人の購入で目標レンジに届きます。</p>
+              <a href={PRO_PAGE_URL}>
+                販売ページを見る
               </a>
             </div>
           </div>
@@ -713,7 +701,7 @@ function App() {
           <div className="sample-heading">
             <p className="eyebrow">Sample outputs</p>
             <h2>完成イメージを見てから作れる</h2>
-            <p>テンプレートごとの色、コピー、見せ方をサンプル化しました。制作代行の相談時も、この方向性を選ぶだけで依頼できます。</p>
+            <p>テンプレートごとの色、コピー、見せ方をサンプル化しました。Proなら全サイズをまとめてZIPで書き出せます。</p>
           </div>
           <div className="sample-grid">
             {STORE_TEMPLATES.map((template) => {
@@ -746,57 +734,57 @@ function App() {
         </div>
       </section>
 
-      <section className="service-section" id="service" aria-label="制作代行パッケージ">
+      <section className="service-section" id="pro" aria-label="Pro販売パッケージ">
         <div className="service-inner">
           <div className="service-heading">
-            <p className="eyebrow">Done-for-you package</p>
-            <h2>制作代行は1件で月1万円に届く商品</h2>
+            <p className="eyebrow">Self-serve Pro</p>
+            <h2>手作業なしのPro販売に寄せる</h2>
             <p>
-              Pro販売だけに頼らず、リリース前で急いでいる個人開発者向けにストア画像一式を納品する導線を用意しています。
+              無料ツールからPro書き出しへ送ります。決済リンクを設定すれば、購入後にライセンスコードを案内するだけの運用にできます。
             </p>
           </div>
 
           <div className="service-grid">
             <div className="service-card">
               <PackageCheck size={22} />
-              <h3>納品物</h3>
+              <h3>Pro内容</h3>
               <ul>
-                <li>App StoreまたはGoogle Play向けスクリーンショット一式</li>
-                <li>日本語見出し・説明コピーの調整</li>
-                <li>PNG書き出しとサイズ別ファイル名整理</li>
+                <li>透かしなしPNG書き出し</li>
+                <li>全サイズZIP一括書き出し</li>
+                <li>用途別テンプレートの継続利用</li>
               </ul>
             </div>
             <div className="service-card">
               <BadgeJapaneseYen size={22} />
               <h3>価格</h3>
-              <p className="service-price">¥9,800〜</p>
-              <p>月1〜2件の受注で、目標の月1〜2万円に届く設計です。</p>
+              <p className="service-price">¥980</p>
+              <p>月11〜21人の購入で、目標の月1〜2万円に届く設計です。</p>
             </div>
             <div className="service-card">
-              <Mail size={22} />
-              <h3>依頼前に必要なもの</h3>
+              <Lock size={22} />
+              <h3>手作業を増やさない</h3>
               <ul>
-                <li>アプリ名とストアURLまたは説明文</li>
-                <li>アプリ画面のスクリーンショット</li>
-                <li>訴求したい機能やターゲット</li>
+                <li>ユーザー自身が画像を作成</li>
+                <li>Pro機能はライセンスコードで解除</li>
+                <li>個別制作を前提にしない</li>
               </ul>
             </div>
           </div>
 
           <div className="brief-panel">
             <div>
-              <p className="eyebrow">Order brief</p>
-              <h3>依頼文をそのまま送れます</h3>
+              <p className="eyebrow">Pro purchase</p>
+              <h3>購入導線を1つに集約</h3>
             </div>
-            <textarea aria-label="制作代行の依頼文" readOnly ref={serviceBriefRef} value={serviceBrief} />
+            <p>決済リンクを設定すると、Pro購入ボタンはそのまま決済ページへ向きます。未設定の間は購入希望フォームに送ります。</p>
             <div className="brief-actions">
-              <button onClick={copyServiceBrief} type="button">
-                <ClipboardCopy size={18} />
-                依頼文をコピー
-              </button>
-              <a href={serviceHref} rel="noreferrer" target="_blank">
-                <Mail size={18} />
-                制作代行を依頼
+              <a href={paymentHref} rel="noreferrer" target="_blank">
+                <BadgeJapaneseYen size={18} />
+                Proを購入
+              </a>
+              <a href={PRO_PAGE_URL}>
+                <PackageCheck size={18} />
+                Proページを見る
               </a>
             </div>
           </div>
@@ -819,12 +807,12 @@ function App() {
               <p>透かしなしで、iPhone、iPad、Google Play向けの全サイズをZIPで一括書き出す用途を想定しています。</p>
             </details>
             <details>
-              <summary>制作代行は何を依頼できますか？</summary>
-              <p>アプリ画面素材をもとに、ストア掲載向けのスクリーンショット一式、見出し、説明コピーの調整を相談できます。</p>
+              <summary>Pro購入後は何ができますか？</summary>
+              <p>透かしなしPNGと、iPhone、iPad、Google Play向けの全サイズZIP一括書き出しを使える想定です。</p>
             </details>
             <details>
               <summary>月1〜2万円を狙う想定は？</summary>
-              <p>制作代行を月1〜2件受注する設計です。Pro販売は補助導線として扱っています。</p>
+              <p>Proを980円で月11〜21人に販売する設計です。個別制作は前提にしません。</p>
             </details>
           </div>
         </div>
@@ -882,31 +870,6 @@ function saveState(state: AppState) {
 
 function buildIssueUrl(template: string, title: string) {
   return `${REPO_ISSUES_URL}?template=${template}&title=${encodeURIComponent(title)}`;
-}
-
-function buildMailtoLink(email: string, body: string) {
-  if (!email.trim()) return "";
-  const params = new URLSearchParams({
-    subject: "StoreShot JP 制作代行の依頼",
-    body,
-  });
-  return `mailto:${email.trim()}?${params.toString()}`;
-}
-
-function buildServiceBrief(appName: string) {
-  return [
-    "StoreShot JP 制作代行を相談したいです。",
-    "",
-    `アプリ名: ${appName || "未定"}`,
-    "対象ストア: App Store / Google Play",
-    "必要枚数: まずは見積もり希望",
-    "希望納期: 相談",
-    "素材URLまたは補足: ",
-    "",
-    "確認したいこと:",
-    "- 9,800円の範囲で対応できる内容",
-    "- 納品までの流れ",
-  ].join("\n");
 }
 
 function drawArtwork(

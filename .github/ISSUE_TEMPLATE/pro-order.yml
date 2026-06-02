@@ -1,12 +1,13 @@
 name: Pro版の購入希望
-description: StoreShot JP Pro版の購入相談
+description: StoreShot JP Pro版の購入希望
 title: "Pro版の購入希望"
 labels: ["sales", "pro"]
 body:
   - type: markdown
     attributes:
       value: |
-        StoreShot JP Pro版は、透かしなしPNGと全サイズZIP一括書き出しを想定しています。
+        StoreShot JP Pro版は980円想定です。透かしなしPNGと全サイズZIP一括書き出しを使える想定です。
+        決済リンクを設定するまでの暫定フォームです。
   - type: input
     id: buyer_name
     attributes:
@@ -20,6 +21,14 @@ body:
       label: 連絡先
       description: 公開されてもよいメール、X、GitHubなど連絡できる方法
       placeholder: your-name@example.com
+    validations:
+      required: true
+  - type: dropdown
+    id: plan
+    attributes:
+      label: 購入プラン
+      options:
+        - Pro（980円 / 透かしなしPNG + 全サイズZIP）
     validations:
       required: true
   - type: textarea
