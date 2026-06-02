@@ -189,9 +189,38 @@ h1 {
 
 .preset-list,
 .choice-grid,
-.palette-grid {
+.palette-grid,
+.template-list {
   display: grid;
   gap: 8px;
+}
+
+.template-button {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  padding: 10px 11px;
+  color: #202427;
+  text-align: left;
+  background: #ffffff;
+  border: 1px solid rgba(43, 47, 50, 0.12);
+  border-radius: 6px;
+}
+
+.template-button span {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.template-button small {
+  display: -webkit-box;
+  overflow: hidden;
+  color: #64716b;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .preset {
@@ -581,6 +610,86 @@ canvas {
   border-radius: 6px;
 }
 
+.template-section {
+  padding: 56px 22px 70px;
+  background: #f5f7f8;
+  border-top: 1px solid rgba(43, 47, 50, 0.1);
+}
+
+.template-inner {
+  display: grid;
+  gap: 22px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.template-heading {
+  display: grid;
+  gap: 10px;
+  max-width: 720px;
+}
+
+.template-heading h2 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.15;
+}
+
+.template-heading p:not(.eyebrow) {
+  margin: 0;
+  color: #53605b;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.template-showcase {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.template-card {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(43, 47, 50, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 12px 34px rgba(39, 43, 44, 0.05);
+}
+
+.template-card span {
+  color: #64716b;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.template-card h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.template-card p {
+  min-height: 46px;
+  margin: 0;
+  color: #53605b;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.template-card button {
+  min-height: 38px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 900;
+  background: #202427;
+  border: 1px solid #202427;
+  border-radius: 6px;
+}
+
 .service-section {
   padding: 58px 22px 78px;
   background: #f5f7f8;
@@ -782,6 +891,10 @@ canvas {
     grid-template-columns: 1fr;
   }
 
+  .template-showcase {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .service-grid {
     grid-template-columns: 1fr;
   }
@@ -846,6 +959,18 @@ canvas {
   }
 
   .pricing-list {
+    grid-template-columns: 1fr;
+  }
+
+  .template-section {
+    padding: 40px 18px 54px;
+  }
+
+  .template-heading h2 {
+    font-size: 27px;
+  }
+
+  .template-showcase {
     grid-template-columns: 1fr;
   }
 

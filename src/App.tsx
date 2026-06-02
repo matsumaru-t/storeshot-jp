@@ -25,6 +25,19 @@ type Platform = "ios" | "android";
 type FrameStyle = "device" | "card" | "full";
 type TextLayout = "top" | "split" | "minimal";
 
+type StoreTemplate = {
+  id: string;
+  category: string;
+  title: string;
+  appName: string;
+  headline: string;
+  subhead: string;
+  badge: string;
+  paletteId: string;
+  frameStyle: FrameStyle;
+  textLayout: TextLayout;
+};
+
 type DevicePreset = {
   id: string;
   platform: Platform;
@@ -165,6 +178,57 @@ const DEFAULT_STATE: AppState = {
   imageUrl: "",
   imageName: "",
 };
+
+const STORE_TEMPLATES: StoreTemplate[] = [
+  {
+    id: "task",
+    category: "Productivity",
+    title: "タスク管理",
+    appName: "Taskly",
+    headline: "今日やることを、迷わず整理。",
+    subhead: "期限、メモ、通知をひとつにまとめて毎日の抜け漏れを減らします。",
+    badge: "定番",
+    paletteId: "paper",
+    frameStyle: "device",
+    textLayout: "top",
+  },
+  {
+    id: "money",
+    category: "Finance",
+    title: "家計簿",
+    appName: "Pocket Note",
+    headline: "支出の流れを、ひと目で把握。",
+    subhead: "レシートなしでもすぐ記録。週ごとの使いすぎを見える化します。",
+    badge: "節約",
+    paletteId: "mint",
+    frameStyle: "card",
+    textLayout: "split",
+  },
+  {
+    id: "learning",
+    category: "Education",
+    title: "学習記録",
+    appName: "Study Log",
+    headline: "続いた学習が、自信になる。",
+    subhead: "勉強時間と復習予定をまとめて、毎日の小さな前進を残します。",
+    badge: "習慣化",
+    paletteId: "coral",
+    frameStyle: "device",
+    textLayout: "top",
+  },
+  {
+    id: "health",
+    category: "Health",
+    title: "ヘルスケア",
+    appName: "Daily Care",
+    headline: "体調の変化を、静かに記録。",
+    subhead: "睡眠、気分、メモをまとめて自分のリズムを見つけます。",
+    badge: "記録",
+    paletteId: "mono",
+    frameStyle: "full",
+    textLayout: "minimal",
+  },
+];
 
 const PAYMENT_LINK = import.meta.env.VITE_PAYMENT_LINK || "";
 const SERVICE_LINK = import.meta.env.VITE_SERVICE_LINK || "";
@@ -314,6 +378,24 @@ function App() {
     setStatus("Pro機能を有効化しました。");
   };
 
+  const applyTemplate = (template: StoreTemplate) => {
+    setState((current) => {
+      const next = {
+        ...current,
+        appName: template.appName,
+        headline: template.headline,
+        subhead: template.subhead,
+        badge: template.badge,
+        paletteId: template.paletteId,
+        frameStyle: template.frameStyle,
+        textLayout: template.textLayout,
+      };
+      saveState(next);
+      return next;
+    });
+    setStatus(`${template.title}テンプレートを適用しました。`);
+  };
+
   const copyServiceBrief = async () => {
     try {
       if (!navigator.clipboard) throw new Error("Clipboard API unavailable");
@@ -376,6 +458,18 @@ function App() {
               maxLength={12}
               onChange={(value) => update("badge", value)}
             />
+          </div>
+
+          <div className="panel">
+            <PanelTitle icon={<Sparkles size={18} />} title="テンプレート" />
+            <div className="template-list">
+              {STORE_TEMPLATES.map((template) => (
+                <button className="template-button" key={template.id} onClick={() => applyTemplate(template)} type="button">
+                  <span>{template.title}</span>
+                  <small>{template.headline}</small>
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="panel">
@@ -587,6 +681,28 @@ function App() {
                 依頼する
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="template-section" aria-label="ストア画像テンプレート">
+        <div className="template-inner">
+          <div className="template-heading">
+            <p className="eyebrow">Copy templates</p>
+            <h2>用途別テンプレートで最初の1枚を早く作る</h2>
+            <p>タスク管理、家計簿、学習記録、ヘルスケアの訴求コピーを用意しました。適用後にアプリ名だけ変えれば試せます。</p>
+          </div>
+          <div className="template-showcase">
+            {STORE_TEMPLATES.map((template) => (
+              <article className="template-card" key={template.id}>
+                <span>{template.category}</span>
+                <h3>{template.title}</h3>
+                <p>{template.headline}</p>
+                <button onClick={() => applyTemplate(template)} type="button">
+                  テンプレートを適用
+                </button>
+              </article>
+            ))}
           </div>
         </div>
       </section>
