@@ -11,12 +11,12 @@ Pro販売向けの静的ページは `public/pro.html`、作成ガイドは `pub
 - 作成ガイド: https://matsumaru-t.github.io/storeshot-jp/guide.html
 - Pro購入フォーム: https://github.com/matsumaru-t/storeshot-jp/issues/new?template=pro-order.yml&title=Pro%E7%89%88%E3%81%AE%E8%B3%BC%E5%85%A5%E5%B8%8C%E6%9C%9B
 
-## 収益モデル
+## Pro機能
 
-- 無料版: PNG単体書き出し。透かし入りでツール名を拡散します。
+- 無料版: 透かし入りPNGを単体で書き出します。
 - Pro版: 透かしなし、全サイズZIP一括書き出し。想定価格は980円。
 
-月1〜2万円の目安は、Pro版を月11〜21件販売する設計です。
+公開画面では、価格・機能差分・購入後の有効化方法だけを案内します。
 
 ## 開発
 

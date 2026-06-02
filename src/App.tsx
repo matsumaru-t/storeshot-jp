@@ -579,8 +579,8 @@ function App() {
               <strong>¥980</strong>
             </div>
             <div className="price-line">
-              <span>月1〜2万円目安</span>
-              <strong>11〜21人</strong>
+              <span>全サイズZIP</span>
+              <strong>対応</strong>
             </div>
             <button className="wide-button" onClick={() => setShowRevenuePanel(true)} type="button">
               <BadgeJapaneseYen size={18} />
@@ -597,8 +597,8 @@ function App() {
             <ul>
               <li>Apple: 1〜10枚のPNG/JPEGを用意</li>
               <li>Google Play: 最低2枚、320〜3840px</li>
-              <li>無料版は透かし入りでSNS拡散</li>
-              <li>Pro決済リンクを公開前に設定</li>
+              <li>文字や端末枠の欠けを確認</li>
+              <li>必要ならProで全サイズZIPを書き出し</li>
             </ul>
           </div>
         </aside>
@@ -662,8 +662,8 @@ function App() {
                 <dd>透かしなしPNG、全サイズZIP一括書き出し</dd>
               </div>
               <div>
-                <dt>目安</dt>
-                <dd>月11〜21人の購入で月1〜2万円</dd>
+                <dt>形式</dt>
+                <dd>購入後にライセンスコードで有効化</dd>
               </div>
             </dl>
             <div className="detail-actions">
