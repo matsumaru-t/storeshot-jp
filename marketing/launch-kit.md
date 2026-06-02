@@ -22,9 +22,9 @@ https://matsumaru-t.github.io/storeshot-jp/
 
 ストア画像を作る時間がない方向けに、App Store / Google Playのスクリーンショット制作代行も受け付けます。
 
-目安は9,800円から。アプリURLと素材があれば相談できます。
+目安は9,800円から。アプリURLと素材があれば、必要枚数に合わせて見積もります。
 
-https://matsumaru-t.github.io/storeshot-jp/
+https://matsumaru-t.github.io/storeshot-jp/service.html
 
 ### 4. Pro導線
 
@@ -41,6 +41,15 @@ https://matsumaru-t.github.io/storeshot-jp/
 https://matsumaru-t.github.io/storeshot-jp/
 
 ## 初回問い合わせ返信
+
+### 制作代行の軽い案内
+
+アプリのストア画像がまだなら、9,800円から制作代行も受けています。
+
+必要なのは、アプリ名、対象ストア、必要枚数、スクリーンショット素材、入れたい訴求です。
+
+相談だけでも大丈夫です。
+https://matsumaru-t.github.io/storeshot-jp/service.html
 
 ### Pro購入希望
 

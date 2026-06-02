@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        制作代行は9,800円からを想定しています。アプリURLや素材があると見積もりが早くなります。
+        制作代行は9,800円からを想定しています。アプリURL、対象ストア、素材、希望納期があると見積もりが早くなります。
   - type: input
     id: app_name
     attributes:
@@ -14,6 +14,46 @@ body:
       placeholder: My App
     validations:
       required: true
+  - type: input
+    id: app_url
+    attributes:
+      label: アプリURLまたは紹介ページ
+      description: 未公開の場合は空欄でも構いません。
+      placeholder: https://apps.apple.com/... または https://example.com
+  - type: dropdown
+    id: plan
+    attributes:
+      label: 希望プラン
+      options:
+        - ライト（9,800円〜 / 1ストア・最大5枚）
+        - スタンダード（14,800円〜 / 複数サイズ・最大10枚）
+        - 急ぎ相談（19,800円〜 / 納期優先）
+        - まだ決めていない
+    validations:
+      required: true
+  - type: dropdown
+    id: store
+    attributes:
+      label: 対象ストア
+      options:
+        - App Store
+        - Google Play
+        - App StoreとGoogle Playの両方
+        - 相談したい
+    validations:
+      required: true
+  - type: input
+    id: quantity
+    attributes:
+      label: 必要枚数・サイズ
+      placeholder: "例: iPhone 6.9インチ向け5枚、Google Play向け4枚"
+    validations:
+      required: true
+  - type: input
+    id: deadline
+    attributes:
+      label: 希望納期
+      placeholder: "例: 2026/6/10まで、急ぎ、未定"
   - type: input
     id: contact
     attributes:
@@ -25,7 +65,8 @@ body:
   - type: textarea
     id: request
     attributes:
-      label: 依頼内容
-      placeholder: iPhone 6.9インチ向け5枚、Google Play向け4枚など
+      label: 素材と依頼内容
+      description: スクリーンショット素材の有無、入れたい見出し、避けたい表現、参考にしたい雰囲気を書いてください。
+      placeholder: 素材は3枚あります。落ち着いた雰囲気で、家計簿機能を強調したいです。
     validations:
       required: true
