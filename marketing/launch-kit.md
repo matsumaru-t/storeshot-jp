@@ -30,7 +30,7 @@ https://matsumaru-t.github.io/storeshot-jp/guide.html
 
 StoreShot JP Proの販売ページを公開しました。
 
-無料版はPNG単体、Proは透かしなしPNG・全サイズZIP一括書き出しを想定しています。価格は980円です。
+無料版はPNG単体、Proは透かしなしPNG・全サイズZIP一括書き出しです。無料版との差分も比較表で見られます。価格は980円です。
 
 https://matsumaru-t.github.io/storeshot-jp/pro.html
 
@@ -49,6 +49,7 @@ https://matsumaru-t.github.io/storeshot-jp/
 価格は980円です。決済リンクを設定するまでは、購入希望フォームから連絡いただいた方へ支払い方法とライセンスコードをご案内します。
 
 購入後は、アプリ内の「ライセンスコード」欄にコードを入力するとPro機能を有効化できます。
+まず無料版で1枚作っていただき、全サイズZIPが必要な場合だけProをご利用ください。
 
 ## 7日間の運用
 

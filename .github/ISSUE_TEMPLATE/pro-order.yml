@@ -31,6 +31,13 @@ body:
         - Pro（980円 / 透かしなしPNG + 全サイズZIP）
     validations:
       required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: 購入前の確認
+      options:
+        - label: 無料版で画像作成を試し、Proの透かしなしPNGと全サイズZIPが必要です。
+          required: true
   - type: textarea
     id: note
     attributes:
