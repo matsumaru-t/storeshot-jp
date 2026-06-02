@@ -581,6 +581,142 @@ canvas {
   border-radius: 6px;
 }
 
+.service-section {
+  padding: 58px 22px 78px;
+  background: #f5f7f8;
+  border-top: 1px solid rgba(43, 47, 50, 0.1);
+}
+
+.service-inner {
+  display: grid;
+  gap: 22px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.service-heading {
+  display: grid;
+  gap: 10px;
+  max-width: 720px;
+}
+
+.service-heading h2 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.15;
+}
+
+.service-heading p:not(.eyebrow) {
+  margin: 0;
+  color: #53605b;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.service-card {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-width: 0;
+  padding: 18px;
+  color: #26322d;
+  background: #ffffff;
+  border: 1px solid rgba(43, 47, 50, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 12px 34px rgba(39, 43, 44, 0.05);
+}
+
+.service-card h3,
+.brief-panel h3 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.service-card p,
+.service-card li {
+  color: #53605b;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.service-card ul {
+  display: grid;
+  gap: 7px;
+  padding-left: 18px;
+  margin: 0;
+}
+
+.service-card p {
+  margin: 0;
+}
+
+.service-card .service-price {
+  color: #202427;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.brief-panel {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(43, 47, 50, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 12px 34px rgba(39, 43, 44, 0.05);
+}
+
+.brief-panel textarea {
+  width: 100%;
+  min-height: 180px;
+  padding: 14px;
+  color: #28332f;
+  font: 700 13px/1.65 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  resize: vertical;
+  background: #f7f9f9;
+  border: 1px solid rgba(43, 47, 50, 0.12);
+  border-radius: 6px;
+}
+
+.brief-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.brief-actions button,
+.brief-actions a {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 14px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+  background: #202427;
+  border: 1px solid #202427;
+  border-radius: 6px;
+}
+
+.brief-actions button {
+  color: #202427;
+  background: #ffffff;
+  border-color: rgba(43, 47, 50, 0.14);
+}
+
 @media (max-width: 1120px) {
   .workspace {
     grid-template-columns: minmax(240px, 300px) minmax(420px, 1fr);
@@ -596,6 +732,10 @@ canvas {
   }
 
   .growth-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .service-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -655,6 +795,19 @@ canvas {
   }
 
   .pricing-list {
+    grid-template-columns: 1fr;
+  }
+
+  .service-section {
+    padding: 40px 18px 58px;
+  }
+
+  .service-heading h2 {
+    font-size: 27px;
+  }
+
+  .brief-actions {
+    display: grid;
     grid-template-columns: 1fr;
   }
 }

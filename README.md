@@ -25,11 +25,12 @@ npm run dev
 VITE_PAYMENT_LINK=https://buy.stripe.com/your-payment-link
 VITE_SERVICE_LINK=https://example.com/store-screenshot-service
 VITE_PRO_CODE=replace-with-your-fulfillment-code
+VITE_CONTACT_EMAIL=you@example.com
 ```
 
 Stripe Payment Linksを使うと、サーバーを持たずに決済リンクを作れます。購入後に渡すライセンスコードは `VITE_PRO_CODE` で設定します。静的フロントエンドだけでは厳密な不正利用防止はできないため、本番で自動販売する場合はサーバー側のライセンス検証を追加してください。
 
-決済リンクを設定するまでは、GitHub Issueで購入希望と制作代行依頼を受け付けます。
+決済リンクや問い合わせ先を設定するまでは、GitHub Issueで購入希望と制作代行依頼を受け付けます。`VITE_CONTACT_EMAIL` を設定すると制作代行の問い合わせはメールに切り替わります。
 
 ## ビルド
 

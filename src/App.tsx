@@ -3,12 +3,15 @@ import JSZip from "jszip";
 import {
   BadgeJapaneseYen,
   Check,
+  ClipboardCopy,
   Download,
   FileArchive,
   ImagePlus,
   Layers,
   Lock,
+  Mail,
   MonitorSmartphone,
+  PackageCheck,
   Palette,
   Settings,
   Share2,
@@ -166,6 +169,7 @@ const DEFAULT_STATE: AppState = {
 const PAYMENT_LINK = import.meta.env.VITE_PAYMENT_LINK || "";
 const SERVICE_LINK = import.meta.env.VITE_SERVICE_LINK || "";
 const PRO_CODE = import.meta.env.VITE_PRO_CODE || "";
+const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || "";
 const PUBLIC_URL = "https://matsumaru-t.github.io/storeshot-jp/";
 const REPO_ISSUES_URL = "https://github.com/matsumaru-t/storeshot-jp/issues/new";
 const FALLBACK_PAYMENT_LINK = buildIssueUrl("pro-order.yml", "Pro版の購入希望");
@@ -184,6 +188,7 @@ function App() {
   const [status, setStatus] = useState("スクリーンショットをアップロードして編集できます。");
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
+  const serviceBriefRef = useRef<HTMLTextAreaElement | null>(null);
 
   const preset = useMemo(
     () => DEVICE_PRESETS.find((item) => item.id === state.presetId) ?? DEVICE_PRESETS[0],
@@ -194,7 +199,8 @@ function App() {
     [state.paletteId],
   );
   const paymentHref = PAYMENT_LINK || FALLBACK_PAYMENT_LINK;
-  const serviceHref = SERVICE_LINK || FALLBACK_SERVICE_LINK;
+  const serviceBrief = useMemo(() => buildServiceBrief(state.appName), [state.appName]);
+  const serviceHref = SERVICE_LINK || buildMailtoLink(CONTACT_EMAIL, serviceBrief) || FALLBACK_SERVICE_LINK;
 
   const update = <Key extends keyof AppState>(key: Key, value: AppState[Key]) => {
     setState((current) => {
@@ -306,6 +312,19 @@ function App() {
     localStorage.setItem("storeshot:pro", "true");
     setShowRevenuePanel(false);
     setStatus("Pro機能を有効化しました。");
+  };
+
+  const copyServiceBrief = async () => {
+    try {
+      if (!navigator.clipboard) throw new Error("Clipboard API unavailable");
+      await navigator.clipboard.writeText(serviceBrief);
+      setStatus("制作代行の依頼文をコピーしました。");
+    } catch {
+      serviceBriefRef.current?.focus();
+      serviceBriefRef.current?.select();
+      const copied = document.execCommand("copy");
+      setStatus(copied ? "制作代行の依頼文をコピーしました。" : "依頼文を選択しました。コピーして送信してください。");
+    }
   };
 
   return (
@@ -571,6 +590,63 @@ function App() {
           </div>
         </div>
       </section>
+
+      <section className="service-section" id="service" aria-label="制作代行パッケージ">
+        <div className="service-inner">
+          <div className="service-heading">
+            <p className="eyebrow">Done-for-you package</p>
+            <h2>制作代行は1件で月1万円に届く商品</h2>
+            <p>
+              Pro販売だけに頼らず、リリース前で急いでいる個人開発者向けにストア画像一式を納品する導線を用意しています。
+            </p>
+          </div>
+
+          <div className="service-grid">
+            <div className="service-card">
+              <PackageCheck size={22} />
+              <h3>納品物</h3>
+              <ul>
+                <li>App StoreまたはGoogle Play向けスクリーンショット一式</li>
+                <li>日本語見出し・説明コピーの調整</li>
+                <li>PNG書き出しとサイズ別ファイル名整理</li>
+              </ul>
+            </div>
+            <div className="service-card">
+              <BadgeJapaneseYen size={22} />
+              <h3>価格</h3>
+              <p className="service-price">¥9,800〜</p>
+              <p>月1〜2件の受注で、目標の月1〜2万円に届く設計です。</p>
+            </div>
+            <div className="service-card">
+              <Mail size={22} />
+              <h3>依頼前に必要なもの</h3>
+              <ul>
+                <li>アプリ名とストアURLまたは説明文</li>
+                <li>アプリ画面のスクリーンショット</li>
+                <li>訴求したい機能やターゲット</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="brief-panel">
+            <div>
+              <p className="eyebrow">Order brief</p>
+              <h3>依頼文をそのまま送れます</h3>
+            </div>
+            <textarea aria-label="制作代行の依頼文" readOnly ref={serviceBriefRef} value={serviceBrief} />
+            <div className="brief-actions">
+              <button onClick={copyServiceBrief} type="button">
+                <ClipboardCopy size={18} />
+                依頼文をコピー
+              </button>
+              <a href={serviceHref} rel="noreferrer" target="_blank">
+                <Mail size={18} />
+                制作代行を依頼
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
@@ -624,6 +700,31 @@ function saveState(state: AppState) {
 
 function buildIssueUrl(template: string, title: string) {
   return `${REPO_ISSUES_URL}?template=${template}&title=${encodeURIComponent(title)}`;
+}
+
+function buildMailtoLink(email: string, body: string) {
+  if (!email.trim()) return "";
+  const params = new URLSearchParams({
+    subject: "StoreShot JP 制作代行の依頼",
+    body,
+  });
+  return `mailto:${email.trim()}?${params.toString()}`;
+}
+
+function buildServiceBrief(appName: string) {
+  return [
+    "StoreShot JP 制作代行を相談したいです。",
+    "",
+    `アプリ名: ${appName || "未定"}`,
+    "対象ストア: App Store / Google Play",
+    "必要枚数: まずは見積もり希望",
+    "希望納期: 相談",
+    "素材URLまたは補足: ",
+    "",
+    "確認したいこと:",
+    "- 9,800円の範囲で対応できる内容",
+    "- 納品までの流れ",
+  ].join("\n");
 }
 
 function drawArtwork(
