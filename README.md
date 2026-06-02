@@ -28,6 +28,8 @@ VITE_SERVICE_LINK=https://example.com/store-screenshot-service
 
 Stripe Payment Linksを使うと、サーバーを持たずに決済リンクを作れます。購入後に渡すライセンスコードは、MVPでは `STORESHOT-LAUNCH` です。本番で不正利用を厳密に防ぐ場合は、サーバー側のライセンス検証を追加してください。
 
+決済リンクを設定するまでは、GitHub Issueで購入希望と制作代行依頼を受け付けます。
+
 ## ビルド
 
 ```bash

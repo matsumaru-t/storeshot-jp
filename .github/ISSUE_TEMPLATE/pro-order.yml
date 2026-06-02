@@ -1,0 +1,29 @@
+name: Pro版の購入希望
+description: StoreShot JP Pro版の購入相談
+title: "Pro版の購入希望"
+labels: ["sales", "pro"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        StoreShot JP Pro版は、透かしなしPNGと全サイズZIP一括書き出しを想定しています。
+  - type: input
+    id: buyer_name
+    attributes:
+      label: お名前または表示名
+      placeholder: 山田 太郎
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: 連絡先
+      description: メール、X、GitHubなど連絡できる方法
+      placeholder: your-name@example.com
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: 補足
+      placeholder: 領収書の要否、希望する支払い方法など

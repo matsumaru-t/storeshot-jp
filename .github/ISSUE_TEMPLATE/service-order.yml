@@ -1,0 +1,31 @@
+name: ストア画像制作代行の依頼
+description: App Store / Google Play向けスクリーンショット制作の相談
+title: "ストア画像制作代行の依頼"
+labels: ["sales", "service"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        制作代行は9,800円からを想定しています。アプリURLや素材があると見積もりが早くなります。
+  - type: input
+    id: app_name
+    attributes:
+      label: アプリ名
+      placeholder: My App
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: 連絡先
+      description: メール、X、GitHubなど連絡できる方法
+      placeholder: your-name@example.com
+    validations:
+      required: true
+  - type: textarea
+    id: request
+    attributes:
+      label: 依頼内容
+      placeholder: iPhone 6.9インチ向け5枚、Google Play向け4枚など
+    validations:
+      required: true

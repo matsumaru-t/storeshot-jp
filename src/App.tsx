@@ -147,6 +147,9 @@ const DEFAULT_STATE: AppState = {
 const PAYMENT_LINK = import.meta.env.VITE_PAYMENT_LINK || "";
 const SERVICE_LINK = import.meta.env.VITE_SERVICE_LINK || "";
 const PRO_CODE = "STORESHOT-LAUNCH";
+const REPO_ISSUES_URL = "https://github.com/matsumaru-t/storeshot-jp/issues/new";
+const FALLBACK_PAYMENT_LINK = buildIssueUrl("pro-order.yml", "Pro版の購入希望");
+const FALLBACK_SERVICE_LINK = buildIssueUrl("service-order.yml", "ストア画像制作代行の依頼");
 
 function App() {
   const [state, setState] = useState<AppState>(() => loadState());
@@ -166,6 +169,8 @@ function App() {
     () => PALETTES.find((item) => item.id === state.paletteId) ?? PALETTES[0],
     [state.paletteId],
   );
+  const paymentHref = PAYMENT_LINK || FALLBACK_PAYMENT_LINK;
+  const serviceHref = SERVICE_LINK || FALLBACK_SERVICE_LINK;
 
   const update = <Key extends keyof AppState>(key: Key, value: AppState[Key]) => {
     setState((current) => {
@@ -472,10 +477,10 @@ function App() {
               無料版はPNG単体書き出し、Proは透かしなしZIP一括書き出し。制作代行は1件で月1万円近くを狙う商品です。
             </p>
             <div className="modal-actions">
-              <a className={PAYMENT_LINK ? "button-link primary" : "button-link disabled"} href={PAYMENT_LINK || undefined}>
+              <a className="button-link primary" href={paymentHref} rel="noreferrer" target="_blank">
                 Proを購入
               </a>
-              <a className={SERVICE_LINK ? "button-link" : "button-link disabled"} href={SERVICE_LINK || undefined}>
+              <a className="button-link" href={serviceHref} rel="noreferrer" target="_blank">
                 制作代行を依頼
               </a>
             </div>
@@ -491,7 +496,9 @@ function App() {
               </button>
             </div>
             {!PAYMENT_LINK && (
-              <p className="setup-note">公開前に .env の VITE_PAYMENT_LINK にStripe決済リンクを設定してください。</p>
+              <p className="setup-note">
+                現在はGitHub Issueで購入希望を受け付けます。Stripe決済リンクを設定すると直接決済に切り替わります。
+              </p>
             )}
           </section>
         </div>
@@ -545,6 +552,10 @@ function loadState(): AppState {
 
 function saveState(state: AppState) {
   localStorage.setItem("storeshot:state", JSON.stringify(state));
+}
+
+function buildIssueUrl(template: string, title: string) {
+  return `${REPO_ISSUES_URL}?template=${template}&title=${encodeURIComponent(title)}`;
 }
 
 function drawArtwork(
