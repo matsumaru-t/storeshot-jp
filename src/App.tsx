@@ -707,6 +707,44 @@ function App() {
         </div>
       </section>
 
+      <section className="sample-section" aria-label="完成サンプル">
+        <div className="sample-inner">
+          <div className="sample-heading">
+            <p className="eyebrow">Sample outputs</p>
+            <h2>完成イメージを見てから作れる</h2>
+            <p>テンプレートごとの色、コピー、見せ方をサンプル化しました。制作代行の相談時も、この方向性を選ぶだけで依頼できます。</p>
+          </div>
+          <div className="sample-grid">
+            {STORE_TEMPLATES.map((template) => {
+              const templatePalette = PALETTES.find((item) => item.id === template.paletteId) ?? PALETTES[0];
+              return (
+                <article
+                  className="sample-card"
+                  key={template.id}
+                  style={{
+                    background: `linear-gradient(145deg, ${templatePalette.colors[0]}, ${templatePalette.colors[1]} 62%, ${templatePalette.colors[2]})`,
+                    color: templatePalette.ink,
+                  }}
+                >
+                  <div className="sample-copy">
+                    <span>{template.badge}</span>
+                    <h3>{template.headline}</h3>
+                    <p>{template.subhead}</p>
+                  </div>
+                  <div className="sample-phone" aria-hidden>
+                    <div />
+                  </div>
+                  <div className="sample-footer">
+                    <strong>{template.appName}</strong>
+                    <small>{template.title}</small>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <section className="service-section" id="service" aria-label="制作代行パッケージ">
         <div className="service-inner">
           <div className="service-heading">

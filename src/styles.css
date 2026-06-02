@@ -690,6 +690,136 @@ canvas {
   border-radius: 6px;
 }
 
+.sample-section {
+  padding: 56px 22px 74px;
+  background: #ffffff;
+  border-top: 1px solid rgba(43, 47, 50, 0.1);
+}
+
+.sample-inner {
+  display: grid;
+  gap: 22px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.sample-heading {
+  display: grid;
+  gap: 10px;
+  max-width: 720px;
+}
+
+.sample-heading h2 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.15;
+}
+
+.sample-heading p:not(.eyebrow) {
+  margin: 0;
+  color: #53605b;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.sample-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.sample-card {
+  position: relative;
+  display: grid;
+  align-content: space-between;
+  min-height: 360px;
+  padding: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(43, 47, 50, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 16px 42px rgba(39, 43, 44, 0.1);
+}
+
+.sample-copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 10px;
+}
+
+.sample-copy span {
+  width: fit-content;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 900;
+  background: rgba(255, 255, 255, 0.66);
+  border-radius: 999px;
+}
+
+.sample-copy h3 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.12;
+}
+
+.sample-copy p {
+  margin: 0;
+  color: rgba(32, 36, 39, 0.72);
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.55;
+}
+
+.sample-phone {
+  position: absolute;
+  right: 22px;
+  bottom: 58px;
+  width: 94px;
+  height: 168px;
+  padding: 8px;
+  background: #171a1c;
+  border-radius: 18px;
+  box-shadow: 0 16px 30px rgba(28, 32, 35, 0.25);
+}
+
+.sample-phone div {
+  width: 100%;
+  height: 100%;
+  background: #f5f6f4;
+  border-radius: 12px;
+}
+
+.sample-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 10px;
+  background: rgba(255, 255, 255, 0.68);
+  border-radius: 8px;
+}
+
+.sample-footer strong,
+.sample-footer small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sample-footer strong {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.sample-footer small {
+  color: rgba(32, 36, 39, 0.64);
+  font-size: 11px;
+  font-weight: 800;
+}
+
 .service-section {
   padding: 58px 22px 78px;
   background: #f5f7f8;
@@ -895,6 +1025,10 @@ canvas {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .sample-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .service-grid {
     grid-template-columns: 1fr;
   }
@@ -972,6 +1106,22 @@ canvas {
 
   .template-showcase {
     grid-template-columns: 1fr;
+  }
+
+  .sample-section {
+    padding: 40px 18px 56px;
+  }
+
+  .sample-heading h2 {
+    font-size: 27px;
+  }
+
+  .sample-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sample-card {
+    min-height: 310px;
   }
 
   .service-section {
