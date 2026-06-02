@@ -647,6 +647,33 @@ function App() {
           </div>
         </div>
       </section>
+
+      <section className="faq-section" aria-label="よくある質問">
+        <div className="faq-inner">
+          <div>
+            <p className="eyebrow">FAQ</p>
+            <h2>購入前の確認</h2>
+          </div>
+          <div className="faq-list">
+            <details>
+              <summary>無料で何ができますか？</summary>
+              <p>無料版では、現在選択しているサイズの透かし入りPNGを単体で書き出せます。</p>
+            </details>
+            <details>
+              <summary>Pro版は何が違いますか？</summary>
+              <p>透かしなしで、iPhone、iPad、Google Play向けの全サイズをZIPで一括書き出す用途を想定しています。</p>
+            </details>
+            <details>
+              <summary>制作代行は何を依頼できますか？</summary>
+              <p>アプリ画面素材をもとに、ストア掲載向けのスクリーンショット一式、見出し、説明コピーの調整を相談できます。</p>
+            </details>
+            <details>
+              <summary>月1〜2万円を狙う想定は？</summary>
+              <p>制作代行を月1〜2件受注する設計です。Pro販売は補助導線として扱っています。</p>
+            </details>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

@@ -717,6 +717,53 @@ canvas {
   border-color: rgba(43, 47, 50, 0.14);
 }
 
+.faq-section {
+  padding: 56px 22px 72px;
+  background: #ffffff;
+  border-top: 1px solid rgba(43, 47, 50, 0.1);
+}
+
+.faq-inner {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.3fr);
+  gap: 28px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.faq-inner h2 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.15;
+}
+
+.faq-list {
+  display: grid;
+  gap: 10px;
+}
+
+.faq-list details {
+  padding: 16px 18px;
+  background: #f7f9f9;
+  border: 1px solid rgba(43, 47, 50, 0.1);
+  border-radius: 8px;
+}
+
+.faq-list summary {
+  color: #202427;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.faq-list p {
+  margin: 10px 0 0;
+  color: #53605b;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.65;
+}
+
 @media (max-width: 1120px) {
   .workspace {
     grid-template-columns: minmax(240px, 300px) minmax(420px, 1fr);
@@ -736,6 +783,10 @@ canvas {
   }
 
   .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-inner {
     grid-template-columns: 1fr;
   }
 }
@@ -809,5 +860,13 @@ canvas {
   .brief-actions {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .faq-section {
+    padding: 40px 18px 56px;
+  }
+
+  .faq-inner h2 {
+    font-size: 27px;
   }
 }
