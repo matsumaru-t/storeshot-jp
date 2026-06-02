@@ -230,6 +230,8 @@ const STORE_TEMPLATES: StoreTemplate[] = [
 
 const PAYMENT_LINK = import.meta.env.VITE_PAYMENT_LINK || "";
 const PRO_CODE = import.meta.env.VITE_PRO_CODE || "";
+const PRO_CODE_HASH =
+  import.meta.env.VITE_PRO_CODE_HASH || "02324b08b9c8c457ce15485b69d02f6265dff2ac7376e3b2f487889193e8d62f";
 const PUBLIC_URL = "https://matsumaru-t.github.io/storeshot-jp/";
 const REPO_ISSUES_URL = "https://github.com/matsumaru-t/storeshot-jp/issues/new";
 const FALLBACK_PAYMENT_LINK = buildIssueUrl("pro-order.yml", "Pro版の購入希望");
@@ -356,13 +358,16 @@ function App() {
     setStatus("全サイズのZIPを書き出しました。");
   };
 
-  const unlockPro = () => {
-    if (!PRO_CODE) {
+  const unlockPro = async () => {
+    const input = licenseInput.trim().toUpperCase();
+    if (!input) {
       setShowRevenuePanel(true);
-      setStatus("Proコードは購入希望を送信後に案内します。");
+      setStatus("購入後に案内されるライセンスコードを入力してください。");
       return;
     }
-    if (licenseInput.trim() !== PRO_CODE) {
+    const legacyMatch = Boolean(PRO_CODE && input === PRO_CODE.trim().toUpperCase());
+    const hashMatch = PRO_CODE_HASH ? (await sha256Hex(input)) === PRO_CODE_HASH : false;
+    if (!legacyMatch && !hashMatch) {
       setStatus("ライセンスコードが違います。");
       return;
     }
@@ -870,6 +875,14 @@ function saveState(state: AppState) {
 
 function buildIssueUrl(template: string, title: string) {
   return `${REPO_ISSUES_URL}?template=${template}&title=${encodeURIComponent(title)}`;
+}
+
+async function sha256Hex(value: string) {
+  const data = new TextEncoder().encode(value);
+  const digest = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(digest))
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
 }
 
 function drawArtwork(

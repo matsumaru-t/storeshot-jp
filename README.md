@@ -31,10 +31,10 @@ npm run dev
 
 ```bash
 VITE_PAYMENT_LINK=https://buy.stripe.com/your-payment-link
-VITE_PRO_CODE=replace-with-your-fulfillment-code
+VITE_PRO_CODE_HASH=sha256-hex-of-your-license-code
 ```
 
-Stripe Payment Linksを使うと、サーバーを持たずに決済リンクを作れます。購入後に渡すライセンスコードは `VITE_PRO_CODE` で設定します。静的フロントエンドだけでは厳密な不正利用防止はできないため、本番で自動販売する場合はサーバー側のライセンス検証を追加してください。
+Stripe Payment Linksを使うと、サーバーを持たずに決済リンクを作れます。購入後に渡すライセンスコードはSHA-256化して `VITE_PRO_CODE_HASH` に設定します。静的フロントエンドだけでは厳密な不正利用防止はできないため、本番で自動販売する場合はサーバー側のライセンス検証を追加してください。
 
 決済リンクを設定するまでは、GitHub IssueでPro購入希望を受け付けます。
 

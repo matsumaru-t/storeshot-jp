@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         StoreShot JP Pro版は980円想定です。透かしなしPNGと全サイズZIP一括書き出しを使える想定です。
-        決済リンクを設定するまでの暫定フォームです。
+        決済リンクを設定するまでの暫定フォームです。支払い確認後、ライセンスコードを案内します。
   - type: input
     id: buyer_name
     attributes:
@@ -35,4 +35,4 @@ body:
     id: note
     attributes:
       label: 補足
-      placeholder: 領収書の要否、希望する支払い方法など
+      placeholder: 希望する支払い方法、領収書の要否、使いたい対象ストアなど
