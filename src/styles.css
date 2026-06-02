@@ -357,9 +357,16 @@ canvas {
   border-top: 1px solid rgba(43, 47, 50, 0.1);
 }
 
-.statusbar div {
+.statusbar > div:first-child,
+.status-message {
   display: grid;
   gap: 2px;
+}
+
+.status-message {
+  justify-items: end;
+  max-width: min(560px, 100%);
+  text-align: right;
 }
 
 .statusbar strong {
@@ -372,6 +379,36 @@ canvas {
   margin: 0;
   font-size: 13px;
   font-weight: 700;
+}
+
+.status-upsell {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 8px;
+  padding: 8px;
+  color: #26322d;
+  background: #eef8f1;
+  border: 1px solid rgba(47, 118, 82, 0.18);
+  border-radius: 8px;
+}
+
+.status-upsell span {
+  color: #34433b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.status-upsell button {
+  min-height: 30px;
+  padding: 0 10px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 900;
+  background: #202427;
+  border: 1px solid #202427;
+  border-radius: 6px;
 }
 
 .palette-grid {
@@ -1067,6 +1104,16 @@ canvas {
     flex-direction: column;
     align-items: stretch;
     padding: 16px 18px;
+  }
+
+  .status-message {
+    justify-items: stretch;
+    text-align: left;
+  }
+
+  .status-upsell {
+    display: grid;
+    justify-content: stretch;
   }
 
   .segmented {

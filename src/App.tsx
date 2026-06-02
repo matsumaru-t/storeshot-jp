@@ -247,6 +247,7 @@ function App() {
   const [isPro, setIsPro] = useState(() => localStorage.getItem("storeshot:pro") === "true");
   const [licenseInput, setLicenseInput] = useState("");
   const [showRevenuePanel, setShowRevenuePanel] = useState(false);
+  const [showExportUpsell, setShowExportUpsell] = useState(false);
   const [exporting, setExporting] = useState(false);
   const [status, setStatus] = useState("スクリーンショットをアップロードして編集できます。");
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -329,10 +330,12 @@ function App() {
     await downloadCanvas(canvasRef.current, fileName);
     setExporting(false);
     setStatus(`${fileName} を書き出しました。`);
+    if (!isPro) setShowExportUpsell(true);
   };
 
   const exportPack = async () => {
     if (!isPro) {
+      setShowExportUpsell(true);
       setShowRevenuePanel(true);
       setStatus("一括ZIP書き出しはPro機能です。");
       return;
@@ -373,6 +376,7 @@ function App() {
     }
     setIsPro(true);
     localStorage.setItem("storeshot:pro", "true");
+    setShowExportUpsell(false);
     setShowRevenuePanel(false);
     setStatus("Pro機能を有効化しました。");
   };
@@ -515,7 +519,17 @@ function App() {
               <strong>{preset.label}</strong>
               <span>{preset.size}</span>
             </div>
-            <p>{exporting ? "書き出し中..." : status}</p>
+            <div className="status-message">
+              <p>{exporting ? "書き出し中..." : status}</p>
+              {showExportUpsell && !isPro && (
+                <div className="status-upsell">
+                  <span>透かしなしPNGと全サイズZIPはProで使えます。</span>
+                  <button onClick={() => setShowRevenuePanel(true)} type="button">
+                    Proを見る
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </section>
 
