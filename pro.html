@@ -218,6 +218,45 @@
         gap: 12px;
       }
 
+      .comparison {
+        display: grid;
+        gap: 8px;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid rgba(43, 47, 50, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 12px 34px rgba(39, 43, 44, 0.05);
+      }
+
+      .compare-row {
+        display: grid;
+        grid-template-columns: minmax(130px, 0.9fr) minmax(0, 1fr) minmax(0, 1fr);
+        gap: 10px;
+        align-items: stretch;
+      }
+
+      .compare-row span {
+        min-width: 0;
+        padding: 12px;
+        color: #53605b;
+        font-size: 14px;
+        font-weight: 760;
+        line-height: 1.45;
+        background: #f7f9f9;
+        border-radius: 6px;
+      }
+
+      .compare-row.header span {
+        color: #202427;
+        font-weight: 900;
+        background: #eef8f1;
+      }
+
+      .compare-row span:first-child {
+        color: #202427;
+        font-weight: 900;
+      }
+
       .card,
       .cta-band {
         min-width: 0;
@@ -274,7 +313,8 @@
 
       @media (max-width: 860px) {
         .hero,
-        .grid {
+        .grid,
+        .compare-row {
           grid-template-columns: 1fr;
         }
 
@@ -381,6 +421,37 @@
       </section>
 
       <section class="section">
+        <h2>無料版とProの違い</h2>
+        <div class="comparison" aria-label="無料版とPro版の比較">
+          <div class="compare-row header">
+            <span>項目</span>
+            <span>無料版</span>
+            <span>Pro</span>
+          </div>
+          <div class="compare-row">
+            <span>書き出し</span>
+            <span>現在選択中のPNG 1枚</span>
+            <span>PNG単体 + 全サイズZIP</span>
+          </div>
+          <div class="compare-row">
+            <span>透かし</span>
+            <span>StoreShot JPの透かし入り</span>
+            <span>透かしなし</span>
+          </div>
+          <div class="compare-row">
+            <span>向いている用途</span>
+            <span>雰囲気確認、SNS共有、試作</span>
+            <span>ストア申請前の一括準備</span>
+          </div>
+          <div class="compare-row">
+            <span>価格</span>
+            <span>無料</span>
+            <span>980円</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
         <h2>購入後の流れ</h2>
         <div class="grid">
           <article class="card">
@@ -401,10 +472,20 @@
       <section class="section">
         <div class="cta-band">
           <div>
-            <h2>まずは無料版で1枚作ってください</h2>
-            <p>全サイズをまとめて書き出したくなったタイミングで、Proへ切り替える設計です。</p>
+            <h2>無料版で確認できたら、Proで一括書き出し</h2>
+            <p>購入希望フォームを送ると、支払い方法とライセンスコードの案内を返します。</p>
           </div>
-          <a class="button" href="/storeshot-jp/">無料ツールを開く</a>
+          <div class="actions">
+            <a
+              class="button"
+              href="https://github.com/matsumaru-t/storeshot-jp/issues/new?template=pro-order.yml&title=Pro%E7%89%88%E3%81%AE%E8%B3%BC%E5%85%A5%E5%B8%8C%E6%9C%9B"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Pro購入希望を送る
+            </a>
+            <a class="button secondary" href="/storeshot-jp/">無料ツールを開く</a>
+          </div>
         </div>
       </section>
 
